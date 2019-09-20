@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: _buildBody(context),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
-        child: Icon(Icons.add),
+        child: Icon(Icons.shopping_cart),
         onPressed: () {
           _textDataController.clear();
           _tampilkanDialog(context);
