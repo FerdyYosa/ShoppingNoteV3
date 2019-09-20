@@ -63,7 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Voting Nama Bayi')),
+      appBar: AppBar(
+        title: Text('Rekap Belanja'),
+        backgroundColor: Colors.green,
+      ),
       body: _buildBody(context),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
