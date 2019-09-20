@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "1087887176056",
+    "firebase_url": "https://baby-names-app-db-982ae.firebaseio.com",
+    "project_id": "baby-names-app-db-982ae",
+    "storage_bucket": "baby-names-app-db-982ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087887176056:android:54b29e3dc475ad94c2188d",
+        "android_client_info": {
+          "package_name": "it.UB8054.flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASh3Ex6iVDhX7BS_32G8f5VpRBiTdnoXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087887176056:android:b5b25a8a01c5aba9c2188d",
+        "android_client_info": {
+          "package_name": "it.UB8054.name_vote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASh3Ex6iVDhX7BS_32G8f5VpRBiTdnoXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087887176056:android:a446763a5e0d898fc2188d",
+        "android_client_info": {
+          "package_name": "it.UB8054.shopping_note"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASh3Ex6iVDhX7BS_32G8f5VpRBiTdnoXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087887176056:android:74567a973ac6eeb3c2188d",
+        "android_client_info": {
+          "package_name": "it.UB8054.vote_crud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASh3Ex6iVDhX7BS_32G8f5VpRBiTdnoXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087887176056-8lcu4ni05ihqiefumv5hf7pp4kslolop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
