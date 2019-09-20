@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_note/addinfo.dart';
 
 void main() => runApp(MyApp());
 
@@ -72,8 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.blue,
         child: Icon(Icons.shopping_cart),
         onPressed: () {
-          _textDataController.clear();
-          _tampilkanDialog(context);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => IsiData()));
         },
       ),
     );
