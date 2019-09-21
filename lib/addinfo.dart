@@ -1,4 +1,6 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class IsiData extends StatefulWidget {
   @override
@@ -8,28 +10,31 @@ class IsiData extends StatefulWidget {
 class _IsiDataState extends State<IsiData> {
   @override
   Widget build(BuildContext context) {
+    final formatTanggal = DateFormat("dd-MM-yyyy");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {},
+        ),
         title: Text("Tambah Catatan"),
       ),
       body: Form(
         child: Column(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
+            DateTimeField(
+                readOnly: true,
                 decoration: InputDecoration(labelText: "Tanggal"),
-                onTap: () async {
-                  final datePick = await showDatePicker(
+                initialValue: DateTime.now(),
+                format: formatTanggal,
+                onShowPicker: (context, currentValue) {
+                  return showDatePicker(
                       context: context,
-                      initialDate: new DateTime.now(),
-                      firstDate: new DateTime(2019),
-                      lastDate: new DateTime(2026));
-                },
-              ),
-            ),
+                      firstDate: DateTime(2010),
+                      initialDate: DateTime.now(),
+                      lastDate: DateTime(2026));
+                }),
             Container(
               padding: EdgeInsets.all(10),
               child: TextFormField(
