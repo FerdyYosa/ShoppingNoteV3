@@ -20,53 +20,60 @@ class _IsiDataState extends State<IsiData> {
         ),
         title: Text("Tambah Catatan"),
       ),
-      body: Form(
-        child: Column(
-          children: <Widget>[
-            DateTimeField(
-                readOnly: true,
-                decoration: InputDecoration(labelText: "Tanggal"),
-                initialValue: DateTime.now(),
-                format: formatTanggal,
-                onShowPicker: (context, currentValue) {
-                  return showDatePicker(
-                      context: context,
-                      firstDate: DateTime(2010),
-                      initialDate: DateTime.now(),
-                      lastDate: DateTime(2026));
-                }),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: InputDecoration(labelText: "Nama:"),
+      body: SingleChildScrollView(
+        child: Form(
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                child: DateTimeField(
+                    readOnly: true,
+                    decoration: InputDecoration(labelText: "Tanggal"),
+                    initialValue: DateTime.now(),
+                    format: formatTanggal,
+                    onShowPicker: (context, currentValue) {
+                      return showDatePicker(
+                          context: context,
+                          firstDate: DateTime(2010),
+                          initialDate: DateTime.now(),
+                          lastDate: DateTime(2026));
+                    }),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: InputDecoration(labelText: "Deskripsi:"),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: InputDecoration(labelText: "Total belanja:"),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text("Batal"),
-                  onPressed: () {},
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 1, 10, 1),
+                child: TextFormField(
+                  decoration: InputDecoration(labelText: "Nama:"),
                 ),
-                RaisedButton(
-                  child: Text("Simpan"),
-                  onPressed: () {},
-                )
-              ],
-            )
-          ],
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                child: TextFormField(
+                  maxLines: 3,
+                  decoration: InputDecoration(labelText: "Deskripsi:"),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                child: TextFormField(
+                  keyboardType: TextInputType.numberWithOptions(),
+                  decoration: InputDecoration(labelText: "Total belanja:"),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text("Batal"),
+                    onPressed: () {},
+                  ),
+                  RaisedButton(
+                    child: Text("Simpan"),
+                    onPressed: () {},
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
