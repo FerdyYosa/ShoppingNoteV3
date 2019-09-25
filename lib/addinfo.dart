@@ -68,7 +68,9 @@ class _IsiDataState extends State<IsiData> {
                   ),
                   RaisedButton(
                     child: Text("Simpan"),
-                    onPressed: () {},
+                    onPressed: () {
+                      
+                    },
                   )
                 ],
               )
@@ -79,3 +81,4 @@ class _IsiDataState extends State<IsiData> {
     );
   }
 }
+
