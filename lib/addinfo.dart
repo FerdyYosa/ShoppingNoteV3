@@ -41,7 +41,7 @@ class _IsiDataState extends State<IsiData> {
                     initialValue: DateTime.now(),
                     format: formatTanggal,
                     onSaved: (t) {
-                      tanggal = t.toString();
+                      tanggal = formatTanggal.format(t);
                     },
                     onShowPicker: (context, currentValue) {
                       return showDatePicker(
