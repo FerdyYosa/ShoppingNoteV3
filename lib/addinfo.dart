@@ -87,10 +87,11 @@ class _IsiDataState extends State<IsiData> {
                   ),
                   RaisedButton(
                     child: Text("Simpan"),
-                    onPressed: () {
+                    onPressed: () async {
                       var formulir = _kunciFormulir.currentState;
                       formulir.save();
                       simpan(tanggal, nama, deskripsi, totalbelanja);
+                      await
                       Navigator.push(
                           context,
                           MaterialPageRoute(
