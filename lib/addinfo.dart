@@ -76,7 +76,7 @@ class _IsiDataState extends State<IsiData> {
                   onSaved: (tb) {
                     totalbelanja = int.parse(tb);
                   },
-                ),
+                )
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,8 +91,7 @@ class _IsiDataState extends State<IsiData> {
                       var formulir = _kunciFormulir.currentState;
                       formulir.save();
                       simpan(tanggal, nama, deskripsi, totalbelanja);
-                      await
-                      Navigator.push(
+                      await Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => (MyHomePage())));
