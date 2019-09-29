@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shopping_note/Models/add_data.dart';
 import 'package:shopping_note/Models/item_belanja.dart';
 import 'package:shopping_note/main.dart';
 
@@ -16,6 +17,8 @@ class _IsiDataState extends State<IsiData> {
   String tanggal;
   String deskripsi;
   int totalbelanja;
+  int jumlahbelanja;
+
   @override
   Widget build(BuildContext context) {
     final formatTanggal = DateFormat("dd-MM-yyyy");
@@ -69,15 +72,14 @@ class _IsiDataState extends State<IsiData> {
                     }),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                child: TextFormField(
-                  keyboardType: TextInputType.numberWithOptions(),
-                  decoration: InputDecoration(labelText: "Total belanja:"),
-                  onSaved: (tb) {
-                    totalbelanja = int.parse(tb);
-                  },
-                )
-              ),
+                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                  child: TextFormField(
+                    keyboardType: TextInputType.numberWithOptions(),
+                    decoration: InputDecoration(labelText: "Total belanja:"),
+                    onSaved: (tb) {
+                      totalbelanja = int.parse(tb);
+                    },
+                  )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -90,7 +92,8 @@ class _IsiDataState extends State<IsiData> {
                     onPressed: () async {
                       var formulir = _kunciFormulir.currentState;
                       formulir.save();
-                      simpan(tanggal, nama, deskripsi, totalbelanja);
+                      simpan(tanggal, nama, deskripsi, totalbelanja,
+                          jumlahbelanja);
                       await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -105,15 +108,27 @@ class _IsiDataState extends State<IsiData> {
       ),
     );
   }
-
-  void simpan(String document, String nama, String deskrip, int totalbelanja) {
-    ItemBelanja itemBelanja =
-        ItemBelanja(nama: nama, deskripsi: deskrip, totalBelanja: totalbelanja);
+var a = Firestore.instance.collection("Belanja").document(tanggal).collection(collectionPath);
+  void simpan(String tanggal, String nama, String deskrip, int totalbelanja,
+      int jumlahbelanja) {
+    ItemBelanja itemBelanja = ItemBelanja(
+        tanggal: tanggal,
+        nama: nama,
+        deskripsi: deskrip,
+        totalBelanja: totalbelanja);
+    AddData addData = AddData(
+        tanggal: tanggal,
+        jumlahBelanja: 0,
+        totalBelanja: totalbelanja);
     var dbItem = Firestore.instance
         .collection("Belanja")
-        .document(document)
-        .collection(document);
+        .document(tanggal)
+        .collection(tanggal);
     dbItem.document(nama).setData(itemBelanja.toMap());
-    var dbHarian = Firestore.instance.collection("Belanja");
+    var dbHarian = Firestore.instance
+        .collection("Belanja")
+        .document(tanggal)
+        .setData(addData.toMap());
+        
   }
 }

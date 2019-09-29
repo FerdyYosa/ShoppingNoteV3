@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_note/Models/add_data.dart';
+import 'package:shopping_note/Models/item_belanja.dart';
 import 'package:shopping_note/addinfo.dart';
 
 void main() => runApp(MyApp());
@@ -73,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.blue,
         child: Icon(Icons.shopping_cart),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => IsiData()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => IsiData()));
         },
       ),
     );
@@ -81,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('baby').snapshots(),
+      stream: Firestore.instance.collection('Belanja').snapshots(),
       builder: (context, nama) {
         if (!nama.hasData) return LinearProgressIndicator();
 
@@ -90,17 +93,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> nama) {
+  Widget _buildList(BuildContext context, List<DocumentSnapshot> addData) {
     return ListView(
       padding: const EdgeInsets.only(top: 20.0),
-      children: nama.map((data) => _buildListItem(context, data)).toList(),
+      children: addData.map((data) => _buildListItem(context, data)).toList(),
     );
   }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final record = Record.fromSnapshot(data);
+    final record =
+        AddData.fromMap(data.data); /*Record.fromSnapshot(data);*/
     return Padding(
-      key: ValueKey(record.name),
+      key: ValueKey(record.tanggal),
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
@@ -108,90 +112,26 @@ class _MyHomePageState extends State<MyHomePage> {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: ListTile(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(record.name),
-              Padding(padding: EdgeInsets.only(left: 10)),
-              Text(record.votes.toString())
-            ],
-          ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.edit, color: Colors.blue),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          content: TextField(
-                            autofocus: true,
-                            controller: _textDataControllerDua,
-                            decoration:
-                                InputDecoration(labelText: "Add New Name"),
-                          ),
-                          actions: <Widget>[
-                            new FlatButton(
-                              child: new Text("Cancel"),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            new FlatButton(
-                              child: new Text("Add"),
-                              onPressed: () {
-                                Firestore.instance
-                                    .collection("baby")
-                                    .document(record.reference.documentID)
-                                    .updateData(
-                                        {"name": _textDataControllerDua.text});
-                                return Navigator.pop(context);
-                              },
-                            )
-                          ],
-                        );
-                      });
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
-                onPressed: () async {
-                  await Firestore.instance
-                      .collection("baby")
-                      .document(record.reference.documentID)
-                      .delete();
-                },
-              )
-            ],
-          ),
-          onTap: () => Firestore.instance.runTransaction((transaction) async {
-            final freshSnapshot = await transaction.get(record.reference);
-            final fresh = Record.fromSnapshot(freshSnapshot);
-            await transaction
-                .update(record.reference, {'votes': fresh.votes + 1});
-          }),
-        ),
+            leading: Row(
+              children: <Widget>[
+                Icon(Icons.monetization_on),
+              ],
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(record.tanggal),
+              ],
+            ),
+            trailing: Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.navigate_next),
+                  onPressed: () {},
+                )
+              ],
+            )),
       ),
     );
   }
-}
-
-class Record {
-  final String name;
-  final int votes;
-  final DocumentReference reference;
-
-  Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['name'] != null),
-        assert(map['votes'] != null),
-        name = map['name'],
-        votes = map['votes'];
-
-  Record.fromSnapshot(DocumentSnapshot nama)
-      : this.fromMap(nama.data, reference: nama.reference);
-
-  @override
-  String toString() => "Record<$name:$votes>";
 }
